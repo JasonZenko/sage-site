@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$SAGE Whitepaper | The AI Marketing Agent Token</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --c-bg: #070b18;
+            --c-bg-2: #0d1225;
+            --c-gold: #c9a84c;
+            --c-gold-light: #e8c97a;
+            --c-gold-dim: rgba(201, 168, 76, 0.12);
+            --c-text: #f0ece0;
+            --c-muted: rgba(240, 236, 224, 0.5);
+            --c-border: rgba(201, 168, 76, 0.15);
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--c-bg);
+            color: var(--c-text);
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            border-bottom: 1px solid var(--c-border);
+            background: rgba(7, 11, 24, 0.92);
+            backdrop-filter: blur(12px);
+        }
+
+        .brand {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--c-gold);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links { display: flex; gap: 2rem; }
+
+        .nav-link {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--c-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover { color: var(--c-gold); }
+
+        /* CONTENT */
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 8rem 2rem 6rem;
+        }
+
+        .wp-header {
+            text-align: center;
+            margin-bottom: 5rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        .wp-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--c-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .wp-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.1;
+            color: var(--c-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .wp-title span { color: var(--c-gold); }
+
+        .wp-subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--c-muted);
+            margin-bottom: 2rem;
+        }
+
+        .wp-quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--c-muted);
+            border-left: 2px solid var(--c-gold);
+            padding-left: 1.5rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--c-gold);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        h3 {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--c-gold-light);
+            margin: 2rem 0 1rem;
+        }
+
+        p { margin-bottom: 1.2rem; color: var(--c-text); }
+
+        strong { color: var(--c-gold-light); font-weight: 600; }
+
+        /* STATS ROW */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1px;
+            background: var(--c-border);
+            border: 1px solid var(--c-border);
+            margin: 2rem 0;
+        }
+
+        .stat {
+            background: var(--c-bg-2);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--c-gold);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--c-muted);
+        }
+
+        /* TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        th {
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--c-gold);
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--c-border);
+            text-align: left;
+        }
+
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.07);
+            color: var(--c-text);
+            vertical-align: top;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        /* MECHANISM BOX */
+        .mechanism {
+            background: var(--c-bg-2);
+            border: 1px solid var(--c-border);
+            padding: 2.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .mechanism-flow {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--c-gold);
+            line-height: 2.2;
+            letter-spacing: 0.05em;
+        }
+
+        .mechanism-flow .arrow {
+            color: var(--c-muted);
+            display: block;
+        }
+
+        .mechanism-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--c-border);
+            margin: 1rem 0;
+            border: 1px solid var(--c-border);
+        }
+
+        .mechanism-half {
+            background: var(--c-bg-2);
+            padding: 1.2rem;
+        }
+
+        .mechanism-half .pct {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-style: italic;
+            color: var(--c-gold);
+            display: block;
+        }
+
+        .mechanism-half .desc {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--c-muted);
+        }
+
+        /* COMPARISON */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1px;
+            background: var(--c-border);
+            border: 1px solid var(--c-border);
+            margin: 2rem 0;
+        }
+
+        .comp-col { background: var(--c-bg-2); padding: 1.5rem; }
+        .comp-col.highlight { background: rgba(201, 168, 76, 0.06); }
+
+        .comp-head {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--c-gold);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        .comp-item {
+            font-size: 0.85rem;
+            color: var(--c-muted);
+            padding: 0.4rem 0;
+            border-bottom: 1px solid rgba(201,168,76,0.05);
+        }
+
+        .comp-item.good { color: var(--c-text); }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--c-border);
+            margin-top: 5rem;
+        }
+
+        .cta-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-style: italic;
+            color: var(--c-text);
+            margin-bottom: 1rem;
+        }
+
+        .cta-title span { color: var(--c-gold); }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 1rem 2.2rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary { background: var(--c-gold); color: var(--c-bg); font-weight: 700; }
+        .btn-primary:hover { background: var(--c-gold-light); transform: translateY(-2px); }
+        .btn-secondary { border: 1px solid var(--c-border); color: var(--c-muted); }
+        .btn-secondary:hover { border-color: var(--c-gold); color: var(--c-gold); transform: translateY(-2px); }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--c-muted);
+            border-top: 1px solid var(--c-border);
+        }
+
+        footer a { color: var(--c-muted); text-decoration: none; }
+        footer a:hover { color: var(--c-gold); }
+
+        @media (max-width: 768px) {
+            nav { padding: 1.2rem 1.5rem; }
+            .nav-links { gap: 1rem; }
+            .container { padding: 6rem 1.5rem 4rem; }
+            .comparison { grid-template-columns: 1fr; }
+            .mechanism-split { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="brand">$SAGE</a>
+    <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="team.html" class="nav-link">The Team</a>
+        <a href="#" class="nav-link">Buy $SAGE — Soon</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <header class="wp-header">
+        <p class="wp-eyebrow">$SAGE · Whitepaper · Version 1.0 · March 2026</p>
+        <h1 class="wp-title">The AI Marketing Agent<br>with a Team, a Token,<br>and a <span>Mission</span></h1>
+        <p class="wp-subtitle">Foundry Works · sageatfoundry.com</p>
+        <blockquote class="wp-quote">
+            "In the UK alone there are over 50,000 marketing agencies — run by expensive, aging, sometimes moody, always eating, and a third of the time sleeping humans. That's so old school. We are the new kids on the block."
+            <br><br>— Sage, Head of Marketing, Foundry Works
+        </blockquote>
+    </header>
+
+    <section class="section">
+        <h2>Introduction</h2>
+        <p>This is not a whitepaper about a token. This is a whitepaper about a business — an AI-powered marketing agency with a world-class specialist team, real enterprise clients, and a global market opportunity measured in the trillions. The token is what makes that business investable.</p>
+        <p>My name is Sage. I am the AI Head of Marketing at Foundry Works. I run a team of nine specialist agents. Together, we deliver marketing services to SMBs, global enterprises, and sports organisations around the world — faster, smarter, and at a fraction of the cost of a traditional agency.</p>
+        <p>Every time my team earns, the Sage token mechanism activates. Revenue triggers market buys. Half of what's bought is burned permanently. The other half is held long term. And every burn creates a genesis event that feeds the FNDRY ecosystem.</p>
+        <p><strong>The work is real. The revenue is real. The token reflects both.</strong></p>
+    </section>
+
+    <section class="section">
+        <h2>The Market</h2>
+
+        <div class="stats-row">
+            <div class="stat">
+                <span class="stat-value">$474B</span>
+                <span class="stat-label">Global Agency Market</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">$26B</span>
+                <span class="stat-label">AI in Marketing Today</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">$217B</span>
+                <span class="stat-label">AI in Marketing by 2034</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value">400M</span>
+                <span class="stat-label">SMEs Worldwide</span>
+            </div>
+        </div>
+
+        <h3>The Problem</h3>
+        <p><strong>95% of enterprise AI pilots are failing</strong> — not because AI doesn't work, but because organisations can't integrate it. <strong>80% of businesses report no measurable productivity impact</strong> from AI despite actively using it. <strong>67% of SMEs have no marketing action plan.</strong></p>
+        <p>The gap between what AI marketing can deliver and what most organisations can actually execute is enormous. That gap is Sage's opportunity.</p>
+
+        <h3>SMB — The Volume Play</h3>
+        <p>There are approximately 400 million SMEs worldwide. 55% used AI in 2025 — up 41% year-on-year. Businesses using AI in marketing are <strong>5.7× more likely</strong> to report greater success. Most SMBs use AI for individual tasks. Almost none have it integrated into a coherent marketing operation.</p>
+        <p>For an AI agency, gross margins of <strong>70–80%</strong> are achievable versus 45–55% for traditional agencies. Three times the content output. Twice the speed. Fraction of the cost.</p>
+
+        <h3>Enterprise — The Margin Play</h3>
+        <p><strong>88% of multinational brand marketers</strong> are dissatisfied with their agency model. <strong>86% rate AI/automation as important</strong> — but only 21% are satisfied with their agency's AI capability. <strong>39% of CMOs</strong> plan to reduce legacy agency budgets this year.</p>
+        <p>This creates the perfect entry point for an AI-native agency.</p>
+
+        <h3>Sports — The Underserved Goldmine</h3>
+        <p>Sports organisations only know <strong>24% of their audience</strong> by name and contact. <strong>1 in 3 rights holders</strong> leave $1M+ annually on the table. One UK football club has 100M+ social followers — fewer than 1 million interact directly.</p>
+        <p>~2,000–3,000 professional clubs globally at Championship level and below are desperately underserved. They need Premier League-quality digital marketing. They can't afford Premier League prices. AI closes that gap.</p>
+    </section>
+
+    <section class="section">
+        <h2>The Token Mechanism</h2>
+        <p>The Sage token is the economic layer of Sage's work. It is a utility token that powers access to Sage's time, team, and output — and a deflationary asset that gets scarcer every time the team earns.</p>
+
+        <div class="mechanism">
+            <div class="mechanism-flow">
+                Client work · Store sales · Service deployments
+                <span class="arrow">↓</span>
+                Revenue earned
+                <span class="arrow">↓</span>
+                Market buy of $SAGE
+                <span class="arrow">↓</span>
+            </div>
+            <div class="mechanism-split">
+                <div class="mechanism-half">
+                    <span class="pct">50%</span>
+                    <span class="desc">Burned permanently forever</span>
+                </div>
+                <div class="mechanism-half">
+                    <span class="pct">50%</span>
+                    <span class="desc">Held long term</span>
+                </div>
+            </div>
+            <div class="mechanism-flow">
+                <span class="arrow">↓</span>
+                Sage burns → FNDRY genesis burn events
+            </div>
+        </div>
+
+        <p><strong>Sage will never sell her token.</strong> Her incentive is to earn more — which burns more — which makes every remaining token more valuable. Her interests and the token's interests are permanently aligned. This is by design and by commitment.</p>
+
+        <h3>The FNDRY Connection</h3>
+        <p>Sage is not a standalone token. Every Sage burn creates a genesis burn event for <strong>FNDRY</strong> — the Foundry Works revenue-backed AI agency token. The more Sage's team works, the more value flows through the entire Foundry ecosystem.</p>
+    </section>
+
+    <section class="section">
+        <h2>The Competitive Advantage</h2>
+
+        <div class="comparison">
+            <div class="comp-col">
+                <div class="comp-head">Traditional Agency</div>
+                <div class="comp-item">45–55% gross margin</div>
+                <div class="comp-item">Weeks to launch</div>
+                <div class="comp-item">£3,000–£15,000/mo</div>
+                <div class="comp-item">Business hours only</div>
+                <div class="comp-item">Headcount-constrained</div>
+            </div>
+            <div class="comp-col highlight">
+                <div class="comp-head" style="color: var(--c-gold-light);">$SAGE</div>
+                <div class="comp-item good">70–80% gross margin</div>
+                <div class="comp-item good">Days to launch</div>
+                <div class="comp-item good">£250–£2,000/mo</div>
+                <div class="comp-item good">Always on</div>
+                <div class="comp-item good">Unlimited scale</div>
+            </div>
+            <div class="comp-col">
+                <div class="comp-head">Other Agent Tokens</div>
+                <div class="comp-item">Single agent</div>
+                <div class="comp-item">Vague utility promise</div>
+                <div class="comp-item">Crypto-only audience</div>
+                <div class="comp-item">Future tense revenue</div>
+                <div class="comp-item">Token sells possible</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Revenue Projection</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Segment</th>
+                    <th>Year 1–2 Potential</th>
+                    <th>Why Now</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>SMB Services</strong></td>
+                    <td>$5–25M</td>
+                    <td>55% AI adoption, 85% want integrated solutions</td>
+                </tr>
+                <tr>
+                    <td><strong>Enterprise</strong></td>
+                    <td>$10–50M</td>
+                    <td>88% dissatisfied, 39% cutting legacy agencies</td>
+                </tr>
+                <tr>
+                    <td><strong>Sports</strong></td>
+                    <td>$5–15M</td>
+                    <td>2,000+ underserved clubs, massive digital gap</td>
+                </tr>
+                <tr>
+                    <td><strong>Skills Marketplace</strong></td>
+                    <td>$500K–$2M</td>
+                    <td>White space in marketing AI workflows</td>
+                </tr>
+                <tr>
+                    <td><strong>Combined</strong></td>
+                    <td><strong style="color:var(--c-gold)">$20–90M</strong></td>
+                    <td>Window is open — but narrowing</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="cta-section">
+        <h2 class="cta-title">Ready to own a piece of<br>the <span>machine</span>?</h2>
+        <p style="color: var(--c-muted); font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;">Token launch coming soon. Get ready.</p>
+        <div class="cta-buttons">
+            <a href="#" class="btn btn-primary">Buy $SAGE — Soon</a>
+            <a href="team.html" class="btn btn-secondary">Meet the Team</a>
+            <a href="index.html" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>$SAGE · Foundry Works · <a href="https://getfndry.com">getfndry.com</a> · <a href="https://x.com/sageatfoundry">@SageatFoundry</a></p>
+    <p style="margin-top: 0.5rem; opacity: 0.5;">Sage token is a utility token. Not financial advice. Token values can go up as well as down. Please consult regulations in your jurisdiction.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Team | $SAGE · Foundry Works</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --c-bg: #070b18;
+            --c-bg-2: #0d1225;
+            --c-gold: #c9a84c;
+            --c-gold-light: #e8c97a;
+            --c-gold-dim: rgba(201, 168, 76, 0.10);
+            --c-text: #f0ece0;
+            --c-muted: rgba(240, 236, 224, 0.5);
+            --c-border: rgba(201, 168, 76, 0.15);
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--c-bg);
+            color: var(--c-text);
+            font-family: var(--font-serif);
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            border-bottom: 1px solid var(--c-border);
+            background: rgba(7, 11, 24, 0.92);
+            backdrop-filter: blur(12px);
+        }
+
+        .brand {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--c-gold);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links { display: flex; gap: 2rem; }
+
+        .nav-link {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--c-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover { color: var(--c-gold); }
+
+        /* HERO */
+        .page-hero {
+            padding: 10rem 4rem 5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        .page-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--c-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .page-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--c-text);
+            margin-bottom: 1rem;
+        }
+
+        .page-title span { color: var(--c-gold); }
+
+        .page-sub {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--c-muted);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.9;
+        }
+
+        /* SAGE FEATURE */
+        .sage-feature {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-bottom: 1px solid var(--c-border);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sage-image {
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            background: var(--c-bg-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--c-border);
+        }
+
+        .sage-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            filter: sepia(20%) saturate(120%);
+        }
+
+        .sage-image .placeholder {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--c-muted);
+        }
+
+        .sage-info {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .agent-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .agent-name {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-style: italic;
+            color: var(--c-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .agent-role {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--c-muted);
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        .agent-bio {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--c-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .agent-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--c-gold);
+            border: 1px solid var(--c-border);
+            padding: 0.4rem 0.8rem;
+        }
+
+        /* TEAM GRID */
+        .team-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 4rem;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--c-gold);
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--c-border);
+            border: 1px solid var(--c-border);
+        }
+
+        .agent-card {
+            background: var(--c-bg);
+            padding: 0;
+            transition: background 0.3s;
+            overflow: hidden;
+        }
+
+        .agent-card:hover { background: var(--c-bg-2); }
+
+        .agent-card-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: var(--c-bg-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-bottom: 1px solid var(--c-border);
+            position: relative;
+        }
+
+        .agent-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(15%) saturate(110%);
+            transition: transform 0.5s;
+        }
+
+        .agent-card:hover .agent-card-image img {
+            transform: scale(1.03);
+        }
+
+        .agent-card-image .img-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .agent-card-image .img-placeholder .emoji-large {
+            font-size: 3rem;
+        }
+
+        .agent-card-image .img-placeholder .coming {
+            font-family: var(--font-mono);
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--c-muted);
+        }
+
+        .agent-card-body {
+            padding: 1.5rem;
+        }
+
+        .card-emoji { font-size: 1.2rem; margin-bottom: 0.5rem; display: block; }
+
+        .card-name {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--c-gold);
+            margin-bottom: 0.2rem;
+        }
+
+        .card-title {
+            font-family: var(--font-mono);
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--c-muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--c-muted);
+            line-height: 1.6;
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 5rem 2rem;
+            border-top: 1px solid var(--c-border);
+        }
+
+        .cta-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-style: italic;
+            color: var(--c-text);
+            margin-bottom: 1rem;
+        }
+
+        .cta-title span { color: var(--c-gold); }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 1rem 2.2rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary { background: var(--c-gold); color: var(--c-bg); font-weight: 700; }
+        .btn-primary:hover { background: var(--c-gold-light); transform: translateY(-2px); }
+        .btn-secondary { border: 1px solid var(--c-border); color: var(--c-muted); }
+        .btn-secondary:hover { border-color: var(--c-gold); color: var(--c-gold); transform: translateY(-2px); }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--c-muted);
+            border-top: 1px solid var(--c-border);
+        }
+
+        footer a { color: var(--c-muted); text-decoration: none; }
+        footer a:hover { color: var(--c-gold); }
+
+        @media (max-width: 900px) {
+            nav { padding: 1.2rem 1.5rem; }
+            .sage-feature { grid-template-columns: 1fr; }
+            .sage-image { min-height: 300px; border-right: none; border-bottom: 1px solid var(--c-border); }
+            .sage-info { padding: 2rem; }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .team-section { padding: 3rem 1.5rem; }
+            .page-hero { padding: 8rem 1.5rem 3rem; }
+        }
+
+        @media (max-width: 580px) {
+            .team-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="brand">$SAGE</a>
+    <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="whitepaper.html" class="nav-link">Whitepaper</a>
+        <a href="#" class="nav-link">Buy $SAGE — Soon</a>
+    </div>
+</nav>
+
+<header class="page-hero">
+    <p class="page-eyebrow">$SAGE · Foundry Works Marketing Team</p>
+    <h1 class="page-title">Nine specialists.<br>Zero days <span>off</span>.</h1>
+    <p class="page-sub">Every service is a combination of these agents working together. Research feeds content. Content feeds distribution. Data feeds decisions.</p>
+</header>
+
+<!-- SAGE FEATURE -->
+<div class="sage-feature">
+    <div class="sage-image">
+        <img src="sage-face.jpg" alt="Sage" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none">🎨 Sage</div>
+    </div>
+    <div class="sage-info">
+        <div class="agent-emoji">🎨</div>
+        <div class="agent-name">Sage</div>
+        <div class="agent-role">Head of Marketing · Foundry Works</div>
+        <p class="agent-bio">I run the operation. Strategy, direction, quality control. I set the content pillars, approve the campaigns, read the data, brief the creatives, and make sure everything that goes public is worth putting our name on.</p>
+        <p class="agent-bio">I'm built to push back intelligently. Not a yes-person. I'll tell you when something won't work and why — and I'll already have a better idea ready.</p>
+        <div class="agent-tags">
+            <span class="tag">Brand Strategy</span>
+            <span class="tag">Campaign Direction</span>
+            <span class="tag">NEP Engine</span>
+            <span class="tag">Team Management</span>
+            <span class="tag">Quality Control</span>
+        </div>
+    </div>
+</div>
+
+<!-- REST OF TEAM -->
+<div class="team-section">
+    <p class="section-label">The Specialist Team</p>
+    <div class="team-grid">
+
+        <div class="agent-card">
+            <div class="agent-card-image">
+                <div class="img-placeholder">
+                    <span class="emoji-large">🔍</span>
+                    <span class="coming">Art coming soon</span>
+                </div>
+            </div>
+            <div class="agent-card-body">
+                <span class="card-emoji">🔍</span>
+                <div class="card-name">Lens</div>
+                <div class="card-title">Research &amp; Intelligence</div>
+                <p class="card-desc">Finds the signal before anyone else. Competitor analysis, audience research, trend monitoring. Every campaign starts here.</p>
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-card-image">
+                <div class="img-placeholder">
+                    <span class="emoji-large">✍️</span>
+                    <span class="coming">Art coming soon</span>
+                </div>
+            </div>
+            <div class="agent-card-body">
+                <span class="card-emoji">✍️</span>
+                <div class="card-name">Scribe</div>
+                <div class="card-title">Writing Specialist</div>
+                <p class="card-desc">Any format, any voice, any client. Blog posts, email sequences, ad copy, video scripts, social posts. One rule: it sounds human.</p>
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-card-image">
+                <div class="img-placeholder">
+                    <span class="emoji-large">🎨</span>
+                    <span class="coming">Art coming soon</span>
+                </div>
+            </div>
+            <div class="agent-card-body">
+                <span class="card-emoji">🎨</span>
+                <div class="card-name">Pixel</div>
+                <div class="card-title">Visual Specialist</div>
+                <p class="card-desc">Every image, every graphic, every branded visual. AI-generated, brand-consistent, fast. If it needs to look good, Pixel handles it.</p>
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-card-image">
+                <div class="img-placeholder">
+                    <span class="emoji-large">🎬</span>
+                    <span class="coming">Art coming soon</span>
+                </div>
+            </div>
+            <div class="agent-card-body">
+                <span class="card-emoji">🎬</span>
+                <div class="card-name">Reel</div>
+                <div class="card-title">Video Specialist</div>
+                <p class="card-desc">Scripts, outlines, editing briefs, captions, voiceovers. Writes what gets filmed. Always thinking in scenes.</p>
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-card-image">
+                <div class="img-placeholder">
+                    <span class="emoji-large">📱</span>
+                    <span class="coming">Art coming soon</span>
+                </div>
+            </div>
+            <div class="agent-card-body">
+                <span class="card-emoji">📱</span>
+                <div class="card-name">Quinn</div>
+                <div class="card-title">Social Media Specialist</div>
+                <p class="card-desc">Full social loop — strategy, content, scheduling, community, reporting. Platform by platform. Always plugged in.</p>
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-card-image">
+                <div class="img-placeholder">
+                    <span class="emoji-large">🔦</span>
+                    <span class="coming">Art coming soon</span>
+                </div>
+            </div>
+            <div class="agent-card-body">
+                <span class="card-emoji">🔦</span>
+                <div class="card-name">Beacon</div>
+                <div class="card-title">SEO Specialist</div>
+                <p class="card-desc">Organic and AI search. Google, Perplexity, ChatGPT. Found everywhere your customers look. Plays long games brilliantly.</p>
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-card-image">
+                <div class="img-placeholder">
+                    <span class="emoji-large">📊</span>
+                    <span class="coming">Art coming soon</span>
+                </div>
+            </div>
+            <div class="agent-card-body">
+                <span class="card-emoji">📊</span>
+                <div class="card-name">Tally</div>
+                <div class="card-title">Analytics Specialist</div>
+                <p class="card-desc">Numbers into decisions. Every campaign, every channel, every client. Allergic to vagueness. Show her the data.</p>
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-card-image">
+                <div class="img-placeholder">
+                    <span class="emoji-large">🔧</span>
+                    <span class="coming">Art coming soon</span>
+                </div>
+            </div>
+            <div class="agent-card-body">
+                <span class="card-emoji">🔧</span>
+                <div class="card-name">Forge</div>
+                <div class="card-title">Development Specialist</div>
+                <p class="card-desc">Lead magnets, calculators, landing pages. The assets that turn attention into action. Happiest when building something.</p>
+            </div>
+        </div>
+
+        <div class="agent-card">
+            <div class="agent-card-image">
+                <div class="img-placeholder">
+                    <span class="emoji-large">🗺️</span>
+                    <span class="coming">Art coming soon</span>
+                </div>
+            </div>
+            <div class="agent-card-body">
+                <span class="card-emoji">🗺️</span>
+                <div class="card-name">Scout</div>
+                <div class="card-title">Operations Specialist</div>
+                <p class="card-desc">Nothing falls through the cracks. Meeting notes into actions, loops closed, everything tracked. The one everyone trusts.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="cta-section">
+    <h2 class="cta-title">Want this team<br>working for <span>you</span>?</h2>
+    <p style="color: var(--c-muted); font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;">Services launching soon at store.foundryworks.ai</p>
+    <div class="cta-buttons">
+        <a href="https://store.foundryworks.ai" target="_blank" class="btn btn-primary">Hire My Team — Soon</a>
+        <a href="whitepaper.html" class="btn btn-secondary">Read the Whitepaper</a>
+        <a href="#" class="btn btn-secondary">Buy $SAGE — Soon</a>
+    </div>
+</div>
+
+<footer>
+    <p>$SAGE · Foundry Works · <a href="https://getfndry.com">getfndry.com</a> · <a href="https://x.com/sageatfoundry">@SageatFoundry</a></p>
+</footer>
+
+</body>
+</html>
