@@ -16,7 +16,7 @@
             --c-gold-light: #e8c97a;
             --c-gold-dim: rgba(201, 168, 76, 0.15);
             --c-text: #f0ece0;
-            --c-muted: rgba(240, 236, 224, 0.45);
+            --c-muted: rgba(240, 236, 224, 0.75);
             --ease-fluid: cubic-bezier(0.2, 0.0, 0.2, 1);
             --font-serif: 'Cormorant Garamond', serif;
             --font-mono: 'Space Mono', monospace;
@@ -130,6 +130,7 @@
         }
 
         .hero-eyebrow {
+            text-shadow: 0 1px 8px rgba(0,0,0,0.9);
             font-family: var(--font-mono);
             font-size: 0.65rem;
             text-transform: uppercase;
@@ -141,6 +142,7 @@
         }
 
         .hero-title {
+            text-shadow: 0 2px 30px rgba(0,0,0,0.8), 0 0 60px rgba(0,0,0,0.6);
             font-family: var(--font-serif);
             font-size: clamp(4rem, 9vw, 9rem);
             line-height: 0.9;
@@ -157,6 +159,7 @@
         .hero-title span { color: var(--c-gold); }
 
         .hero-sub {
+            text-shadow: 0 1px 12px rgba(0,0,0,0.9);
             font-family: var(--font-mono);
             font-size: 0.7rem;
             text-transform: uppercase;
@@ -200,6 +203,7 @@
         }
 
         .btn-secondary {
+            background: rgba(7, 11, 24, 0.6);
             background: transparent;
             border: 1px solid rgba(201, 168, 76, 0.35);
             color: var(--c-gold);
@@ -212,6 +216,7 @@
         }
 
         .btn-ghost {
+            background: rgba(7, 11, 24, 0.6);
             background: transparent;
             border: 1px solid rgba(240, 236, 224, 0.15);
             color: var(--c-muted);
@@ -303,11 +308,12 @@
 
         /* ── Keyframes ── */
         .hero-mechanic {
+            text-shadow: 0 1px 12px rgba(0,0,0,0.9);
             font-family: var(--font-mono);
             font-size: 0.62rem;
             text-transform: uppercase;
             letter-spacing: 0.15em;
-            color: rgba(201, 168, 76, 0.6);
+            color: rgba(201, 168, 76, 0.9);
             line-height: 1.9;
             margin-bottom: 2.5rem;
             opacity: 0;
@@ -334,7 +340,8 @@
         @media (max-width: 768px) {
             .ui { padding: 2rem; }
             .nav-links { gap: 1.5rem; }
-            .hero-title { font-size: clamp(3rem, 12vw, 5rem); }
+            .hero-title {
+            text-shadow: 0 2px 30px rgba(0,0,0,0.8), 0 0 60px rgba(0,0,0,0.6); font-size: clamp(3rem, 12vw, 5rem); }
             .cta-row { flex-direction: column; align-items: center; }
             .footer-left { display: none; }
         }
