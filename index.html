@@ -401,7 +401,7 @@
 
         const scene  = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100);
-        camera.position.set(0, 0, 4.5);
+        camera.position.set(0, 0, 3.8);
 
         let points, mouseX = 0, mouseY = 0;
 
@@ -450,11 +450,13 @@
                     const r = data[idx], g = data[idx+1], b = data[idx+2], a = data[idx+3];
                     if (a < 20) continue;
                     if (r > 238 && g > 238 && b > 238) continue;
+                    // Crop to face/neck only — skip bottom 35%
+                    if (y > RES * 0.68) continue;
                     const brightness = (r + g + b) / 3;
                     if (brightness < 10) continue;
 
-                    const px = (x / RES - 0.5) * 2.6;
-                    const py = -(y / RES - 0.5) * 3.0;
+                    const px = (x / RES - 0.5) * 3.2;
+                    const py = -(y / RES - 0.5) * 3.8;
                     const pz = (Math.random() - 0.5) * 0.15;
                     posArr.push(px, py, pz);
 
@@ -505,8 +507,8 @@
             requestAnimationFrame(animate);
             t += 0.003;
             if (points) {
-                points.rotation.y  = mouseX * 0.18 + Math.sin(t * 0.5) * 0.05;
-                points.rotation.x  = mouseY * 0.10 + Math.sin(t * 0.4) * 0.02;
+                points.rotation.y  = mouseX * 0.55 + Math.sin(t * 0.5) * 0.05;
+                points.rotation.x  = mouseY * 0.35 + Math.sin(t * 0.4) * 0.02;
                 points.position.y  = Math.sin(t * 0.7) * 0.04;
             }
             renderer.render(scene, camera);
