@@ -363,7 +363,7 @@
     <div class="ui">
         <nav>
             <a href="#" class="brand nav-link-hover">$SAGE</a>
-            <div class="burger" id="burger" onclick="document.getElementById('mobileMenu').classList.add('open')">
+            <div class="burger" id="burger" onclick="document.getElementById('mobileMenu').style.display='flex'">
             <span></span><span></span><span></span>
         </div>
         <div class="nav-links">
@@ -576,14 +576,12 @@
         });
     </script>
 
-<div class="mobile-menu" id="mobileMenu">
-    <span class="mobile-close" onclick="document.getElementById('mobileMenu').classList.remove('open')">✕ Close</span>
-    <a href="index.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Home</a>
-    <a href="team.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">The Team</a>
-    <a href="whitepaper.html" onclick="document.getElementById('mobileMenu').classList.remove('open')">Whitepaper</a>
-    <a href="https://store.foundryworks.ai" target="_blank">Hire My Team — Soon</a>
-    <a href="#" onclick="document.getElementById('mobileMenu').classList.remove('open')">Podcast — Soon</a>
-    <a href="https://getfndry.com" target="_blank">FNDRY</a>
+<div id="mobileMenu" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(7,11,24,0.97);z-index:9990;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;">
+    <span onclick="document.getElementById('mobileMenu').style.display='none'" style="position:absolute;top:2rem;right:2rem;font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;color:rgba(240,236,224,0.5);cursor:pointer;">✕ Close</span>
+    <a href="index.html" style="font-family:var(--font-serif);font-size:2rem;font-style:italic;color:var(--c-text);text-decoration:none;">Home</a>
+    <a href="team.html" style="font-family:var(--font-serif);font-size:2rem;font-style:italic;color:var(--c-text);text-decoration:none;">The Team</a>
+    <a href="whitepaper.html" style="font-family:var(--font-serif);font-size:2rem;font-style:italic;color:var(--c-text);text-decoration:none;">Whitepaper</a>
+    <a href="#" style="font-family:var(--font-serif);font-size:2rem;font-style:italic;color:var(--c-gold);text-decoration:none;">Podcast — Soon</a>
 </div>
     <!-- Sage Voice Agent -->
     <style>
@@ -592,6 +590,10 @@
             bottom: 2rem;
             right: 2rem;
             z-index: 9999;
+            --elevenlabs-convai-primary-color: #c9a84c;
+            --elevenlabs-convai-background-color: #070b18;
+            --elevenlabs-convai-text-color: #f0ece0;
+            --elevenlabs-convai-border-color: rgba(201,168,76,0.3);
         }
     </style>
     <elevenlabs-convai agent-id="agent_1301kjwkb86yfyj95869znbjnbs9"></elevenlabs-convai>
