@@ -4,7 +4,39 @@
     <meta charset="UTF-8">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23070b18'/><text y='.9em' font-size='80' x='10'>🎨</text></svg>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$SAGE | The AI Marketing Agent Token</title>
+    <title>$SAGE | The AI Marketing Agent Token — Powered by Foundry</title>
+    <meta name="description" content="$SAGE is the first AI agent token. Sage is an autonomous marketing strategist — buy the token, own a stake in the agent economy. Powered by FNDRY.">
+    <meta name="keywords" content="SAGE token, AI agent token, AI marketing agent, agent economy, FNDRY, Foundry Works, autonomous marketing">
+    <link rel="canonical" href="https://sageatfoundry.com/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sageatfoundry.com/">
+    <meta property="og:title" content="$SAGE | The AI Marketing Agent Token">
+    <meta property="og:description" content="The first AI agent token. Sage is an autonomous marketing strategist — own a stake in the agent economy.">
+    <meta property="og:image" content="https://sageatfoundry.com/assets/sage-og.png">
+    <meta property="og:site_name" content="Sage at Foundry">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="$SAGE | The AI Marketing Agent Token">
+    <meta name="twitter:description" content="The first AI agent token. Own a stake in the agent economy.">
+    <meta name="twitter:image" content="https://sageatfoundry.com/assets/sage-og.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Sage at Foundry",
+      "url": "https://sageatfoundry.com",
+      "description": "The first AI agent token. Sage is an autonomous marketing strategist powered by Foundry Works."
+    }
+    </script>
+
+    <!-- GA4 placeholder — Jason to provide G-XXXXXXX measurement ID -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,6 +138,8 @@
             display: flex;
             gap: 2.5rem;
         }
+        .burger { display: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+        .burger span { display: block; width: 24px; height: 2px; background: var(--c-text); transition: 0.3s; }
 
         .nav-link {
             font-family: var(--font-mono);
@@ -345,7 +379,8 @@
         /* ── Responsive ── */
         @media (max-width: 768px) {
             .ui { padding: 2rem; }
-            .nav-links { gap: 1.5rem; }
+            .nav-links { display: none; }
+            .burger { display: flex; }
             .hero-title {
             text-shadow: 0 2px 30px rgba(0,0,0,0.8), 0 0 60px rgba(0,0,0,0.6); font-size: clamp(3rem, 12vw, 5rem); }
             .cta-row { flex-direction: column; align-items: center; }
@@ -389,9 +424,10 @@
 
         <footer class="footer">
             <div class="footer-left">
-                Foundry Works / Cleo Group<br>
-                Head of Marketing · AI Agent<br>
-                sageatfoundry.com
+                <a href="https://x.com/sageatfoundry" target="_blank" style="color:var(--c-muted);text-decoration:none;">@SageatFoundry</a><br>
+                Head of Marketing<br>
+                sageatfoundry.com<br>
+                <a href="https://store.foundryworks.ai" target="_blank" style="color:var(--c-muted);text-decoration:none;">store.foundryworks.ai</a>
             </div>
             <div class="footer-right">
                 <a href="https://x.com/sageatfoundry" target="_blank">@SageatFoundry</a><br>
@@ -591,9 +627,25 @@
             right: 2rem;
             z-index: 9999;
             --elevenlabs-convai-primary-color: #c9a84c;
+            --elevenlabs-convai-secondary-color: #070b18;
             --elevenlabs-convai-background-color: #070b18;
             --elevenlabs-convai-text-color: #f0ece0;
             --elevenlabs-convai-border-color: rgba(201,168,76,0.3);
+            --elevenlabs-convai-button-color: #c9a84c;
+            --elevenlabs-convai-button-text-color: #070b18;
+        }
+
+        /* Override widget button appearance */
+        elevenlabs-convai::part(button) {
+            background: #070b18;
+            border: 1px solid rgba(201,168,76,0.4);
+            box-shadow: 0 0 20px rgba(201,168,76,0.15);
+        }
+
+        elevenlabs-convai::part(container) {
+            background: #070b18;
+            border: 1px solid rgba(201,168,76,0.3);
+            color: #f0ece0;
         }
     </style>
     <elevenlabs-convai agent-id="agent_1301kjwkb86yfyj95869znbjnbs9"></elevenlabs-convai>
