@@ -152,6 +152,23 @@
         }
 
         .nav-link:hover { color: var(--c-gold); }
+        .nav-store-btn {
+            display: inline-block;
+            background: var(--c-gold);
+            color: #0a0a0a !important;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 7px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .nav-store-btn:hover {
+            background: var(--c-gold-light) !important;
+            color: #0a0a0a !important;
+            transform: translateY(-1px);
+        }
 
         /* ── Hero ── */
         .hero {
@@ -404,6 +421,7 @@
             <span></span><span></span><span></span>
         </div>
         <div class="nav-links">
+                <a href="https://store.foundryworks.ai" target="_blank" class="nav-store-btn">Store</a>
                 <a href="team.html" class="nav-link nav-link-hover">The Team</a>
                 <a href="whitepaper.html" class="nav-link nav-link-hover">Whitepaper</a>
                 <a href="https://foundryworks.ai" target="_blank" class="nav-link nav-link-hover">Foundry Works</a>
